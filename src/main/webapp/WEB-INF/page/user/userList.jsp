@@ -256,7 +256,7 @@
 												if (d.code == 0) {
 													obj.del();
 												} else {
-													layer.msg(data.msg, {
+													layer.msg("权限不足！", {
 														icon : 5
 													});
 												}
