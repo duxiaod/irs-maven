@@ -64,11 +64,11 @@
 			<version>${spring.version}</version>
 		</dependency>
 		<!-- Spring test -->
-        <dependency>
-            <groupId>org.springframework</groupId>
-            <artifactId>spring-test</artifactId>
-            <version>${spring.version}</version>
-        </dependency>
+		<dependency>
+			<groupId>org.springframework</groupId>
+			<artifactId>spring-test</artifactId>
+			<version>${spring.version}</version>
+		</dependency>
 		<!-- 数据库驱动 mysql driver -->
 		<dependency>
 			<groupId>mysql</groupId>
@@ -220,16 +220,25 @@
 			<type>jar</type>
 		</dependency>
 		<dependency>
-            <groupId>net.sf.json-lib</groupId>
-            <artifactId>json-lib</artifactId>
-            <version>2.4</version>
-            <classifier>jdk15</classifier>
-        </dependency>
+			<groupId>net.sf.json-lib</groupId>
+			<artifactId>json-lib</artifactId>
+			<version>2.4</version>
+			<classifier>jdk15</classifier>
+		</dependency>
 	</dependencies>
 	<build>
 		<finalName>ssm</finalName>
-		<!-- <plugins> <plugin> <groupId>org.apache.maven.plugins</groupId> <artifactId>maven-compiler-plugin</artifactId> 
-			<version>3.3.0</version> <configuration> <source>1.8</source> <target>1.8</target> 
-			</configuration> </plugin> </plugins> -->
+		<plugins>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-compiler-plugin</artifactId>
+				<version>2.5.1</version>
+				<configuration>
+					<source>1.7</source>
+					<target>1.7</target>
+					<showWarnings>true</showWarnings>
+				</configuration>
+			</plugin>
+		</plugins>
 	</build>
 </project>

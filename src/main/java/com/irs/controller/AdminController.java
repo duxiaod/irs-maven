@@ -604,7 +604,7 @@ public class AdminController {
 			if(m.getTitle().equals(menus.getTitle())){
 				f=true;
 			}
-			if(!f||data.size()>1){
+			if(f||data.size()>1){
 				return ResultUtil.error("同级菜单名不能相同！");
 			}
 			menus.setSpread("false");
