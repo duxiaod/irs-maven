@@ -42,7 +42,7 @@
 		<!--权限树xtree  -->
 		<div class="layui-form-item">
 			<label class="layui-form-label">分配权限：</label>
-	      	<div id="xtree1" style="width:200px;margin-left: 100px">
+	      	<div id="xtree1" style="width:250px;margin-left: 100px">
 	      	</div>
       	</div>
 		<div class="layui-form-item">

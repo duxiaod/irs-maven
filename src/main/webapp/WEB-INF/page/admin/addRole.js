@@ -17,6 +17,7 @@ layui.config({
 		});
 		
  	form.on("submit(editRole)",function(data){
+ 		var index = top.layer.msg('数据提交中，请稍候',{icon: 16,time:false,shade:0.8});
  		var list=xtree.GetChecked()
  		//菜单id
  		var mStr="";
@@ -37,7 +38,6 @@ layui.config({
  		//将权限字符串写进隐藏域
  		m.val(mStr)
  		//弹出loading
- 		var index = top.layer.msg('数据提交中，请稍候',{icon: 16,time:false,shade:0.8});
  		var msg;
  		$.ajax({
             type: "POST",

@@ -48,7 +48,7 @@
 		<!--权限树xtree  -->
 		<div class="layui-form-item">
 		<label class="layui-form-label">修改权限：</label>
-	      	<div id="xtree" style="width:200px;margin-left: 100px">
+	      	<div id="xtree" style="width:250px;margin-left: 100px">
 	      	</div>
       	</div>
 		<div class="layui-form-item">

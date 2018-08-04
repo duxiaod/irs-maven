@@ -28,8 +28,6 @@ public interface AdminService {
 	
 	//获取指定角色权限树
 	public List<XtreeData> selXtreeData(TbAdmin admin);
-	//获取指定角色权限树
-	public List<XtreeData> selXtreeData1(TbAdmin admin);
 	
 	//更新角色信息
 	public void updRole(TbRoles role,String m);

@@ -2,8 +2,11 @@ package com.irs.mapper;
 
 import com.irs.pojo.TbAdmin;
 import com.irs.pojo.TbAdminExample;
+import com.irs.pojo.XtreeData;
+
 import java.util.List;
 import org.apache.ibatis.annotations.Param;
+import org.apache.ibatis.annotations.Select;
 
 public interface TbAdminMapper {
     int countByExample(TbAdminExample example);

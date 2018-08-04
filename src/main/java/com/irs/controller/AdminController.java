@@ -250,7 +250,7 @@ public class AdminController {
 	public List<XtreeData> xtreeData(@RequestParam(value="roleId", defaultValue="-1") Long roleId) {
 		TbAdmin admin=new TbAdmin();
 		admin.setRoleId(roleId);
-		return adminServiceImpl.selXtreeData1(admin);
+		return adminServiceImpl.selXtreeData(admin);
 	}
 	
 	/**

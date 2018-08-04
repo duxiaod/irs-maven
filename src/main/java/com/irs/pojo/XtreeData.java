@@ -1,5 +1,6 @@
 package com.irs.pojo;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class XtreeData {
@@ -7,7 +8,7 @@ public class XtreeData {
 	private String value;
 	private Boolean checked=false;
 	private Boolean disabled;
-	private List<XtreeData> data;
+	private List<XtreeData> data=new ArrayList<>();
 	
 	public XtreeData(String title, String value, Boolean checked, List<XtreeData> data) {
 		super();
