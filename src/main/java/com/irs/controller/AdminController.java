@@ -601,10 +601,10 @@ public class AdminController {
 			List<TbMenus> data=adminServiceImpl.checkTitleSameLevel(menus);
 			TbMenus m = adminServiceImpl.selMenuById(menus.getMenuId());
 			Boolean f=false;
-			if(m.getTitle().equals(menus.getTitle())){
+			if(data.size()>0&&!m.getTitle().equals(data.get(0).getTitle())){
 				f=true;
 			}
-			if(f||data.size()>1){
+			if(f){
 				return ResultUtil.error("同级菜单名不能相同！");
 			}
 			menus.setSpread("false");
