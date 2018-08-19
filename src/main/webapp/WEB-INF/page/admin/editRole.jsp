@@ -59,6 +59,6 @@
 	</form>
 	<script type="text/javascript" src="${ctx }/layui/layui.js"></script>
 		<script type="text/javascript" src="${ctx }/js/layui-xtree.js"></script>
-	<script type="text/javascript" src="${ctx }//page/admin/editRole.js"></script>
+	<script type="text/javascript" src="${ctx }/page/admin/editRole.js"></script>
 </body>
 </html>

@@ -50,8 +50,12 @@
 	<script type="text/javascript" src="${ctx }/layui/layui.js"></script>
 	<script type="text/javascript" src="${ctx }/page/admin/adminList.js"></script>
 	<script type="text/html" id="barEdit">
+	<shiro:hasPermission name="sys:admin:update">
   		<a class="layui-btn layui-btn-xs" lay-event="edit">编辑</a>
+	</shiro:hasPermission>
+	<shiro:hasPermission name="sys:admin:delete">
   		<a class="layui-btn layui-btn-danger layui-btn-xs" lay-event="del">删除</a>
+	</shiro:hasPermission>
 	</script>
 	<script type="text/html" id="sexTpl">
  		 {{#  if(d.sex === '0'){ }}

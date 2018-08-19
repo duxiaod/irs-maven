@@ -83,8 +83,12 @@
 	</div>
 	<script type="text/javascript" src="${ctx }/layui/layui.js"></script>
 	<script type="text/html" id="barEdit">
-  		<a class="layui-btn layui-btn-xs" lay-event="edit">编辑</a>
-  		<a class="layui-btn layui-btn-danger layui-btn-xs" lay-event="del">删除</a>
+		<shiro:hasPermission name="user:user:update">
+			<a class="layui-btn layui-btn-xs" lay-event="edit">编辑</a>
+		</shiro:hasPermission>
+  		<shiro:hasPermission name="user:user:delete">
+  			<a class="layui-btn layui-btn-danger layui-btn-xs" lay-event="del">删除</a>
+		</shiro:hasPermission>
 	</script>
 	<script type="text/html" id="sexTpl">
  		 {{#  if(d.sex === '0'){ }}
