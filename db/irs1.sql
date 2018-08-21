@@ -10,7 +10,7 @@ Target Server Type    : MYSQL
 Target Server Version : 50549
 File Encoding         : 65001
 
-Date: 2018-08-19 19:27:24
+Date: 2018-08-21 10:36:05
 */
 
 SET FOREIGN_KEY_CHECKS=0;
@@ -40,7 +40,29 @@ CREATE TABLE `tb_admin` (
 -- Records of tb_admin
 -- ----------------------------
 INSERT INTO `tb_admin` VALUES ('1', 'admin', 'e10adc3949ba59abbe56e057f20f883e', null, 'arthur', 'duxiaod@qq.com', '1', '1994-11-08', '陕西省西安市雁塔区', '17693109997', '1');
-INSERT INTO `tb_admin` VALUES ('18', 'test', 'e10adc3949ba59abbe56e057f20f883e', null, 'test', 'test@test.com', '1', '2018-02-25', '甘肃省兰州市榆中县和平镇', '17601038192', null);
+INSERT INTO `tb_admin` VALUES ('18', 'test', 'e10adc3949ba59abbe56e057f20f883e', null, 'test', 'test@test.com', '1', '2018-02-25', '甘肃省兰州市榆中县和平镇', '17601038192', '61');
+
+-- ----------------------------
+-- Table structure for tb_carousel
+-- ----------------------------
+DROP TABLE IF EXISTS `tb_carousel`;
+CREATE TABLE `tb_carousel` (
+  `id` tinyint(8) NOT NULL AUTO_INCREMENT,
+  `imgUrl` varchar(100) NOT NULL,
+  `imgLink` varchar(100) DEFAULT NULL,
+  `remark` varchar(100) DEFAULT NULL,
+  `sorting` int(10) NOT NULL,
+  `status` int(1) NOT NULL,
+  `create_time` datetime NOT NULL,
+  `update_time` datetime DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=11 DEFAULT CHARSET=utf8;
+
+-- ----------------------------
+-- Records of tb_carousel
+-- ----------------------------
+INSERT INTO `tb_carousel` VALUES ('8', 'fe3ecede0bec467b8be253684db5e28b3193.jpg', 'http://localhost:8080/irs/index.jsp', '百姓关心的环境问题 习近平给出最新答案', '200', '1', '2018-05-20 23:36:49', '2018-08-21 10:21:16');
+INSERT INTO `tb_carousel` VALUES ('10', '1e4e799ccb41438ab4ece494f32d72c59900.jpg', 'http://localhost:8080/irs_maven/index.jsp', 'test', '19', '1', '2018-08-21 10:28:49', null);
 
 -- ----------------------------
 -- Table structure for tb_log
@@ -55,7 +77,7 @@ CREATE TABLE `tb_log` (
   `ip` varchar(64) DEFAULT NULL COMMENT 'ip',
   `create_time` datetime NOT NULL COMMENT '操作时间',
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=665 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=690 DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Records of tb_log
@@ -353,6 +375,31 @@ INSERT INTO `tb_log` VALUES ('661', 'admin', '更新管理员信息', '/irs_mave
 INSERT INTO `tb_log` VALUES ('662', 'admin', '更新用户信息', '/irs_maven/user/updUser', 'TbUsers [uid=29, eMail=sdf@163.com, nickname=123123, sex=2, birthday=2018-07-27, address=123123, phone=17111111111, eCode=null, status=1, createTime=null];', '0:0:0:0:0:0:0:1', '2018-08-19 19:25:12');
 INSERT INTO `tb_log` VALUES ('663', 'admin', '删除指定角色信息', '/irs_maven/sys/delRole/62', '62;', '0:0:0:0:0:0:0:1', '2018-08-19 19:26:52');
 INSERT INTO `tb_log` VALUES ('664', 'admin', '更新角色信息', '/irs_maven/sys/updRole', 'TbRoles [roleId=61, roleName=test, roleRemark=test];1,1,16,3,2,17,3,2,18,3,2,19,3,2,20,4,2,21,4,2,22,4,2,23,4,2,47,46,2,48,46,2,49,46,2,50,46,2,33,10,9,34,11,9,35,11,9,36,11,9,37,11,9,42,15,14,45,44,43;', '0:0:0:0:0:0:0:1', '2018-08-19 19:27:05');
+INSERT INTO `tb_log` VALUES ('665', 'admin', '更新角色信息', '/irs_maven/sys/updRole', 'TbRoles [roleId=61, roleName=test, roleRemark=test];1,1,16,3,2,17,3,2,18,3,2,19,3,2,20,4,2,47,46,2,48,46,2,49,46,2,50,46,2,33,10,9,34,11,9,35,11,9,36,11,9,37,11,9,45,44,43,42,15,14;', '0:0:0:0:0:0:0:1', '2018-08-19 19:44:40');
+INSERT INTO `tb_log` VALUES ('666', 'admin', '更新管理员信息', '/irs_maven/sys/updAdmin', 'TbAdmin [id=18, username=test, password=null, salt=null, fullname=test, eMail=test@test.com, sex=1, birthday=2018-02-25, address=甘肃省兰州市榆中县和平镇, phone=17601038192, roleId=61, roleName=null];', '0:0:0:0:0:0:0:1', '2018-08-19 19:46:07');
+INSERT INTO `tb_log` VALUES ('667', 'test', '更新角色信息', '/irs_maven/sys/updRole', 'TbRoles [roleId=61, roleName=test, roleRemark=test];1,1,16,3,2,17,3,2,18,3,2,19,3,2,20,4,2,47,46,2,48,46,2,49,46,2,50,46,2,34,11,9,45,44,43,42,15,14;', '0:0:0:0:0:0:0:1', '2018-08-19 19:50:00');
+INSERT INTO `tb_log` VALUES ('668', 'admin', '维护菜单信息', '/irs_maven/sys/menuForm', 'com.irs.pojo.TbMenus@db8c02;1;', '0:0:0:0:0:0:0:1', '2018-08-21 09:54:02');
+INSERT INTO `tb_log` VALUES ('669', 'admin', '维护菜单信息', '/irs_maven/sys/menuForm', 'com.irs.pojo.TbMenus@60009;1;', '0:0:0:0:0:0:0:1', '2018-08-21 09:54:19');
+INSERT INTO `tb_log` VALUES ('670', 'admin', '维护菜单信息', '/irs_maven/sys/menuForm', 'com.irs.pojo.TbMenus@1192510;;', '0:0:0:0:0:0:0:1', '2018-08-21 09:54:29');
+INSERT INTO `tb_log` VALUES ('671', 'admin', '维护菜单信息', '/irs_maven/sys/menuForm', 'com.irs.pojo.TbMenus@1501b0b;;', '0:0:0:0:0:0:0:1', '2018-08-21 09:54:49');
+INSERT INTO `tb_log` VALUES ('672', 'admin', '维护菜单信息', '/irs_maven/sys/menuForm', 'com.irs.pojo.TbMenus@187bc69;1;', '0:0:0:0:0:0:0:1', '2018-08-21 09:55:05');
+INSERT INTO `tb_log` VALUES ('673', 'admin', '维护菜单信息', '/irs_maven/sys/menuForm', 'com.irs.pojo.TbMenus@41267b;;', '0:0:0:0:0:0:0:1', '2018-08-21 09:55:27');
+INSERT INTO `tb_log` VALUES ('674', 'admin', '维护菜单信息', '/irs_maven/sys/menuForm', 'com.irs.pojo.TbMenus@13037e1;1;', '0:0:0:0:0:0:0:1', '2018-08-21 09:55:50');
+INSERT INTO `tb_log` VALUES ('675', 'admin', '维护菜单信息', '/irs_maven/sys/menuForm', 'com.irs.pojo.TbMenus@1ea4188;1;', '0:0:0:0:0:0:0:1', '2018-08-21 09:56:23');
+INSERT INTO `tb_log` VALUES ('676', 'admin', '维护菜单信息', '/irs_maven/sys/menuForm', 'com.irs.pojo.TbMenus@19d9a84;1;', '0:0:0:0:0:0:0:1', '2018-08-21 09:56:45');
+INSERT INTO `tb_log` VALUES ('677', 'admin', '更新角色信息', '/irs_maven/sys/updRole', 'TbRoles [roleId=1, roleName=超级管理员, roleRemark=超级管理员];1,1,16,3,2,17,3,2,18,3,2,19,3,2,20,4,2,21,4,2,22,4,2,23,4,2,47,46,2,48,46,2,49,46,2,50,46,2,33,10,9,34,11,9,35,11,9,36,11,9,37,11,9,53,52,51,54,52,51,55,52,51,56,52,51,45,44,43,42,15,14;', '0:0:0:0:0:0:0:1', '2018-08-21 09:57:03');
+INSERT INTO `tb_log` VALUES ('678', 'admin', '维护菜单信息', '/irs_maven/sys/menuForm', 'com.irs.pojo.TbMenus@10d4297;;', '0:0:0:0:0:0:0:1', '2018-08-21 09:58:48');
+INSERT INTO `tb_log` VALUES ('679', 'admin', '更新角色信息', '/irs_maven/sys/updRole', 'TbRoles [roleId=1, roleName=超级管理员, roleRemark=超级管理员];1,1,16,3,2,17,3,2,18,3,2,19,3,2,20,4,2,21,4,2,22,4,2,23,4,2,47,46,2,48,46,2,49,46,2,50,46,2,33,10,9,34,11,9,35,11,9,36,11,9,37,11,9,53,52,51,54,52,51,55,52,51,56,52,51,45,44,43,42,15,14;', '0:0:0:0:0:0:0:1', '2018-08-21 09:59:30');
+INSERT INTO `tb_log` VALUES ('680', 'admin', '维护菜单信息', '/irs_maven/sys/menuForm', 'com.irs.pojo.TbMenus@1cfa31;;', '0:0:0:0:0:0:0:1', '2018-08-21 10:00:08');
+INSERT INTO `tb_log` VALUES ('681', 'admin', '更新轮播图状态', '/irs_maven/carousel/update/8/0', '8;0;', '0:0:0:0:0:0:0:1', '2018-08-21 10:02:03');
+INSERT INTO `tb_log` VALUES ('682', 'admin', '更新轮播图状态', '/irs_maven/carousel/update/8/1', '8;1;', '0:0:0:0:0:0:0:1', '2018-08-21 10:02:05');
+INSERT INTO `tb_log` VALUES ('683', 'admin', '更新轮播图状态', '/irs_maven/carousel/update/8/0', '8;0;', '0:0:0:0:0:0:0:1', '2018-08-21 10:02:06');
+INSERT INTO `tb_log` VALUES ('684', 'admin', '更新轮播图状态', '/irs_maven/carousel/update/9/1', '9;1;', '0:0:0:0:0:0:0:1', '2018-08-21 10:16:48');
+INSERT INTO `tb_log` VALUES ('685', 'admin', '更新轮播图状态', '/irs_maven/carousel/update/9/0', '9;0;', '0:0:0:0:0:0:0:1', '2018-08-21 10:16:49');
+INSERT INTO `tb_log` VALUES ('686', 'admin', '删除指定的轮播图', '/irs_maven/carousel/delete', '9;', '0:0:0:0:0:0:0:1', '2018-08-21 10:20:57');
+INSERT INTO `tb_log` VALUES ('687', 'admin', '批量删除轮播图', '/irs_maven/carousel/deletes', '7;', '0:0:0:0:0:0:0:1', '2018-08-21 10:21:05');
+INSERT INTO `tb_log` VALUES ('688', 'admin', '更新轮播图', '/irs_maven/carousel/update', 'com.irs.pojo.TbCarousel@1edad01;', '0:0:0:0:0:0:0:1', '2018-08-21 10:21:16');
+INSERT INTO `tb_log` VALUES ('689', 'admin', '添加轮播信息', '/irs_maven/carousel/save', 'com.irs.pojo.TbCarousel@bb57a4;', '0:0:0:0:0:0:0:1', '2018-08-21 10:28:49');
 
 -- ----------------------------
 -- Table structure for tb_menus
@@ -368,19 +415,19 @@ CREATE TABLE `tb_menus` (
   `parent_id` bigint(20) NOT NULL COMMENT '父节点',
   `sorting` bigint(20) DEFAULT NULL,
   PRIMARY KEY (`menu_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=51 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=57 DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Records of tb_menus
 -- ----------------------------
 INSERT INTO `tb_menus` VALUES ('1', '后台首页', '', 'page/main.html', '', 'false', '0', '9999');
-INSERT INTO `tb_menus` VALUES ('2', '管理员管理', '', '', '', 'false', '0', null);
+INSERT INTO `tb_menus` VALUES ('2', '管理员管理', '', '', '', 'false', '0', '998');
 INSERT INTO `tb_menus` VALUES ('3', '角色管理', '&#xe613;', 'sys/roleList', null, 'false', '2', null);
 INSERT INTO `tb_menus` VALUES ('4', '管理员列表', '&#xe613;', 'sys/adminList', null, 'false', '2', null);
-INSERT INTO `tb_menus` VALUES ('9', '用户管理', '&#xe61d;', null, null, 'false', '0', null);
+INSERT INTO `tb_menus` VALUES ('9', '用户管理', '&#xe61d;', null, null, 'false', '0', '997');
 INSERT INTO `tb_menus` VALUES ('10', '添加用户', '&#xe608;', 'user/addUser', null, 'false', '9', null);
 INSERT INTO `tb_menus` VALUES ('11', '管理用户', '&#xe60e;', 'user/userList', null, 'false', '9', null);
-INSERT INTO `tb_menus` VALUES ('14', '系统日志', '&#xe61d;', null, null, 'false', '0', null);
+INSERT INTO `tb_menus` VALUES ('14', '系统日志', '&#xe61d;', null, null, 'false', '0', '995');
 INSERT INTO `tb_menus` VALUES ('15', '日志管理', '&#xe642;', 'log/logList', null, 'false', '14', null);
 INSERT INTO `tb_menus` VALUES ('16', '查看', '', '', 'sys:role:list', 'false', '3', null);
 INSERT INTO `tb_menus` VALUES ('17', '新增', null, null, 'sys:role:save', 'false', '3', null);
@@ -396,7 +443,7 @@ INSERT INTO `tb_menus` VALUES ('35', '新增', null, null, 'user:user:save', 'fa
 INSERT INTO `tb_menus` VALUES ('36', '修改', null, null, 'user:user:update', 'false', '11', null);
 INSERT INTO `tb_menus` VALUES ('37', '删除', null, null, 'user:user:delete', 'false', '11', null);
 INSERT INTO `tb_menus` VALUES ('42', '查看', '', '', 'log:log:list', 'false', '15', null);
-INSERT INTO `tb_menus` VALUES ('43', 'SQL监控', '&#xe642;', null, null, 'false', '0', null);
+INSERT INTO `tb_menus` VALUES ('43', 'SQL监控', '&#xe642;', null, null, 'false', '0', '996');
 INSERT INTO `tb_menus` VALUES ('44', 'SQL监控', '&#xe642;', 'sys/druid', null, 'false', '43', null);
 INSERT INTO `tb_menus` VALUES ('45', '查看', null, null, 'sys:druid:list', 'false', '44', null);
 INSERT INTO `tb_menus` VALUES ('46', '菜单管理', '&#xe642;', 'sys/menuList', null, 'false', '2', null);
@@ -404,6 +451,12 @@ INSERT INTO `tb_menus` VALUES ('47', '查看', null, null, 'sys:menu:list', 'fal
 INSERT INTO `tb_menus` VALUES ('48', '新增', null, null, 'sys:menu:save', 'false', '46', null);
 INSERT INTO `tb_menus` VALUES ('49', '修改', null, null, 'sys:menu:update', 'false', '46', null);
 INSERT INTO `tb_menus` VALUES ('50', '删除', null, null, 'sys:menu:delete', 'false', '46', null);
+INSERT INTO `tb_menus` VALUES ('51', '轮播管理', '', '', '', 'false', '0', '997');
+INSERT INTO `tb_menus` VALUES ('52', '轮播管理', '', 'carousel/carouselList', '', 'false', '51', null);
+INSERT INTO `tb_menus` VALUES ('53', '查看', '', '', 'carousel:carousel:list', 'false', '52', null);
+INSERT INTO `tb_menus` VALUES ('54', '删除', '', '', 'carousel:carousel:delete', 'false', '52', null);
+INSERT INTO `tb_menus` VALUES ('55', '修改', '', '', 'carousel:carousel:update', 'false', '52', null);
+INSERT INTO `tb_menus` VALUES ('56', '新增', '', '', 'carousel:carousel:save', 'false', '52', null);
 
 -- ----------------------------
 -- Table structure for tb_roles
@@ -469,12 +522,17 @@ INSERT INTO `tb_roles_menus` VALUES ('47', '1');
 INSERT INTO `tb_roles_menus` VALUES ('48', '1');
 INSERT INTO `tb_roles_menus` VALUES ('49', '1');
 INSERT INTO `tb_roles_menus` VALUES ('50', '1');
+INSERT INTO `tb_roles_menus` VALUES ('51', '1');
+INSERT INTO `tb_roles_menus` VALUES ('52', '1');
+INSERT INTO `tb_roles_menus` VALUES ('53', '1');
+INSERT INTO `tb_roles_menus` VALUES ('54', '1');
+INSERT INTO `tb_roles_menus` VALUES ('55', '1');
+INSERT INTO `tb_roles_menus` VALUES ('56', '1');
 INSERT INTO `tb_roles_menus` VALUES ('1', '61');
 INSERT INTO `tb_roles_menus` VALUES ('2', '61');
 INSERT INTO `tb_roles_menus` VALUES ('3', '61');
 INSERT INTO `tb_roles_menus` VALUES ('4', '61');
 INSERT INTO `tb_roles_menus` VALUES ('9', '61');
-INSERT INTO `tb_roles_menus` VALUES ('10', '61');
 INSERT INTO `tb_roles_menus` VALUES ('11', '61');
 INSERT INTO `tb_roles_menus` VALUES ('14', '61');
 INSERT INTO `tb_roles_menus` VALUES ('15', '61');
@@ -483,14 +541,7 @@ INSERT INTO `tb_roles_menus` VALUES ('17', '61');
 INSERT INTO `tb_roles_menus` VALUES ('18', '61');
 INSERT INTO `tb_roles_menus` VALUES ('19', '61');
 INSERT INTO `tb_roles_menus` VALUES ('20', '61');
-INSERT INTO `tb_roles_menus` VALUES ('21', '61');
-INSERT INTO `tb_roles_menus` VALUES ('22', '61');
-INSERT INTO `tb_roles_menus` VALUES ('23', '61');
-INSERT INTO `tb_roles_menus` VALUES ('33', '61');
 INSERT INTO `tb_roles_menus` VALUES ('34', '61');
-INSERT INTO `tb_roles_menus` VALUES ('35', '61');
-INSERT INTO `tb_roles_menus` VALUES ('36', '61');
-INSERT INTO `tb_roles_menus` VALUES ('37', '61');
 INSERT INTO `tb_roles_menus` VALUES ('42', '61');
 INSERT INTO `tb_roles_menus` VALUES ('43', '61');
 INSERT INTO `tb_roles_menus` VALUES ('44', '61');
