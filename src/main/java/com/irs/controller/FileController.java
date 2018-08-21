@@ -45,7 +45,7 @@ public class FileController {
 				e.printStackTrace();
 			}
 			Map<String, String> map = new HashMap<>();
-			map.put("src", GlobalUtil.getValue("upfile.code") + img);
+			map.put("src", img);
 			return ResultUtil.ok(map);
 		} else {
 			return ResultUtil.error("文件格式不支持,请重新选择！");
@@ -67,7 +67,7 @@ public class FileController {
 		OutputStream os = null;
 		try {
 			//图片的本地全路径
-			fis = new FileInputStream("d:/upload/" + fileName);
+			fis = new FileInputStream(GlobalUtil.getValue("upfile.path")+"/"+ fileName);
 			os = response.getOutputStream();
 			int count = 0;
 			byte[] buffer = new byte[1024 * 8];
@@ -97,7 +97,7 @@ public class FileController {
 	@ResponseBody
 	public void downLoadList(HttpServletRequest request, HttpServletResponse response,
 			String fileName){
-	        downloadFile(new File("d:/upload",fileName), response, false);
+	        downloadFile(new File(GlobalUtil.getValue("upfile.path"),fileName), response, false);
 	}
 	
 	/**

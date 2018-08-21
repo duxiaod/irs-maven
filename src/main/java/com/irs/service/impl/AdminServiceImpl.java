@@ -12,7 +12,6 @@ import com.github.pagehelper.PageInfo;
 import com.irs.mapper.AdminMenusMapper;
 import com.irs.mapper.TbAdminMapper;
 import com.irs.mapper.TbMenusMapper;
-import com.irs.mapper.TbNewsExample;
 import com.irs.mapper.TbRolesMapper;
 import com.irs.mapper.TbRolesMenusMapper;
 import com.irs.pojo.Menu;
