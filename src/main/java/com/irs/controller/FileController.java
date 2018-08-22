@@ -38,7 +38,11 @@ public class FileController {
 			try {
 				// uploadFile.transferTo(new
 				// File(req.getServletContext().getRealPath("WEB-INF/upload"),img));
-				file.transferTo(new File(GlobalUtil.getValue("upfile.path"), img));
+				File f=new File(GlobalUtil.getValue("upfile.path"));
+				if(!f.exists()){
+					f.mkdirs();
+				}
+				file.transferTo(new File(f, img));
 			} catch (IllegalStateException e) {
 				e.printStackTrace();
 			} catch (IOException e) {
