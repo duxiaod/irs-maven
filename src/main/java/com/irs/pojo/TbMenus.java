@@ -17,9 +17,20 @@ public class TbMenus {
 
     private Long sorting;
     
+    private String checked;
+    
     private Boolean isOpen=false;
 
-    public Long getMenuId() {
+    
+    public String getChecked() {
+		return checked;
+	}
+
+	public void setChecked(String checked) {
+		this.checked = checked;
+	}
+
+	public Long getMenuId() {
         return menuId;
     }
 

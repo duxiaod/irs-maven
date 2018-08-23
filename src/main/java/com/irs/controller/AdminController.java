@@ -33,6 +33,7 @@ import com.irs.pojo.TbMenus;
 import com.irs.pojo.TbRoles;
 import com.irs.pojo.XtreeData;
 import com.irs.service.AdminService;
+import com.irs.util.JsonUtils;
 import com.irs.util.RRException;
 import com.irs.util.ResultUtil;
 import com.irs.util.ShiroUtils;
@@ -230,9 +231,9 @@ public class AdminController {
 	 */
 	@RequestMapping("/editRole")
 	@RequiresPermissions("sys:role:update")
-	public String editRole(String roleId,String roleName,String roleRemark,HttpServletRequest req) {
+	public String editRole(Long roleId,String roleName,String roleRemark,HttpServletRequest req) {
 		TbRoles role=new TbRoles();
-		role.setRoleId(Long.parseLong(roleId));
+		role.setRoleId(roleId);
 		role.setRoleName(roleName);
 		role.setRoleRemark(roleRemark);
 		req.setAttribute("role", role);
@@ -247,10 +248,10 @@ public class AdminController {
 	 */
 	@RequestMapping("/xtreedata")
 	@ResponseBody
-	public List<XtreeData> xtreeData(@RequestParam(value="roleId", defaultValue="-1") Long roleId) {
-		TbAdmin admin=new TbAdmin();
+	public String xtreeData(@RequestParam(value="roleId", defaultValue="-1") Long roleId) {
+		TbAdmin admin = new TbAdmin();
 		admin.setRoleId(roleId);
-		return adminServiceImpl.selXtreeData(admin);
+		return JsonUtils.objectToJson(adminServiceImpl.selXtreeData(admin));
 	}
 	
 	/**
@@ -601,10 +602,10 @@ public class AdminController {
 			List<TbMenus> data=adminServiceImpl.checkTitleSameLevel(menus);
 			TbMenus m = adminServiceImpl.selMenuById(menus.getMenuId());
 			Boolean f=false;
-			if(data.size()>0&&!m.getTitle().equals(data.get(0).getTitle())){
+			if(m.getTitle().equals(menus.getTitle())){
 				f=true;
 			}
-			if(f){
+			if(!f||data.size()>1){
 				return ResultUtil.error("同级菜单名不能相同！");
 			}
 			menus.setSpread("false");

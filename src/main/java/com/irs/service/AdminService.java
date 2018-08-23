@@ -7,11 +7,12 @@ import com.irs.pojo.Menu;
 import com.irs.pojo.TbAdmin;
 import com.irs.pojo.TbMenus;
 import com.irs.pojo.TbRoles;
+import com.irs.pojo.TbRolesMenus;
 import com.irs.pojo.XtreeData;
 import com.irs.util.ResultUtil;
 
 public interface AdminService {
-	// 登陆
+	//登陆
 	public TbAdmin login(String username, String password);
 	
 	//获取所有角色
@@ -27,7 +28,9 @@ public interface AdminService {
 	public List<Menu> selMenus(TbAdmin admin);
 	
 	//获取指定角色权限树
-	public List<XtreeData> selXtreeData(TbAdmin admin);
+	public List<TbMenus> selXtreeData(TbAdmin admin);
+	//获取指定角色权限树
+	public List<TbMenus> selXtreeData1(TbAdmin admin);
 	
 	//更新角色信息
 	public void updRole(TbRoles role,String m);

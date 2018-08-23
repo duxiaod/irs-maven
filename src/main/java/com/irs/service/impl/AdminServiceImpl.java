@@ -3,6 +3,7 @@ package com.irs.service.impl;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.apache.shiro.SecurityUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.util.DigestUtils;
@@ -22,6 +23,7 @@ import com.irs.pojo.TbMenus;
 import com.irs.pojo.TbMenusExample;
 import com.irs.pojo.TbRoles;
 import com.irs.pojo.TbRolesExample;
+import com.irs.pojo.TbRolesMenus;
 import com.irs.pojo.TbRolesMenusExample;
 import com.irs.pojo.TbRolesMenusKey;
 import com.irs.pojo.XtreeData;
@@ -144,80 +146,104 @@ public class AdminServiceImpl implements AdminService {
 		}
 		return results;
 	}
-	
-	/**
-	 * 获取菜单树（指定角色的设置选中）
-	 */
-	@Override
-	public List<XtreeData> selXtreeData(TbAdmin admin) {
-		List<TbMenus> menus = adminMenusMapper.getMenus(admin.getRoleId());//获取指定角色的菜单
-		//所有菜单
-		TbMenusExample example = new TbMenusExample();
-		example.setOrderByClause("sorting DESC");
-		List<TbMenus> allMenus = tbMenusMapper.selectByExample(example);
-		//根节点
-	    List<XtreeData> rootMenu = new ArrayList<XtreeData>();
-	    for (TbMenus nav : allMenus) {
-	        if(nav.getParentId()==0L){//父节点是0的，为根节点。
-	        	XtreeData x=new XtreeData();
-	        	x.setTitle(nav.getTitle());
-	        	x.setValue(nav.getMenuId()+"");
-	        	for (TbMenus m : menus) {
-					if(nav.getMenuId().equals(m.getMenuId())){
-						x.setChecked(true);
-						break;
-					}
-					
-				}
-	        	rootMenu.add(x);
-	        }
-	      }
-	    
-	  //为根菜单设置子菜单，getClild是递归调用的
-      for (XtreeData nav : rootMenu) {
-        /* 获取根节点下的所有子节点 使用getChild方法*/
-        List<XtreeData> childList = getChild(Long.parseLong(nav.getValue()), allMenus,menus);
-        nav.setData(childList);//给根节点设置子节点
-      }
 
-		return rootMenu;
+	@Override
+	public List<TbMenus> selXtreeData(TbAdmin admin) {
+		TbMenusExample example = new TbMenusExample();
+		List<TbMenus> allMenus = tbMenusMapper.selectByExample(example);
+		Long roleId = admin.getRoleId();
+		if(!roleId.equals(Long.valueOf("-1"))){
+			TbRolesMenusExample rolemenusexample = new TbRolesMenusExample();
+			com.irs.pojo.TbRolesMenusExample.Criteria criteria = rolemenusexample.createCriteria();
+			criteria.andRoleIdEqualTo(roleId);
+			List<TbRolesMenusKey> roleMenus = tbRolesMenusMapper.selectByExample(rolemenusexample);
+			for (TbMenus m : allMenus) {
+				for (TbRolesMenusKey tbMenus : roleMenus) {
+					if (tbMenus.getMenuId() == m.getMenuId()) {
+						m.setChecked("true");
+					}
+				}
+			}
+		}
+		return allMenus;
 	}
-	/**
-   * 获取子节点
-   * @param value 父节点id
-   * @param allMenus 所有菜单列表
-   * @return 每个根节点下，所有子菜单列表
-   */
-	private List<XtreeData> getChild(Long value, List<TbMenus> allMenus,List<TbMenus> menus) {
-		//子菜单
-	    List<XtreeData> childList = new ArrayList<XtreeData>();
-	    for (TbMenus nav : allMenus) {
-	        // 遍历所有节点，将所有菜单的父id与传过来的根节点的id比较
-	        //相等说明：为该根节点的子节点。
-	        if(nav.getParentId()==value){
-	        	XtreeData x=new XtreeData();
-	        	x.setValue(nav.getMenuId()+"");
-	        	x.setTitle(nav.getTitle());
-	        	//拥有的菜单选中
-	        	for (TbMenus m : menus) {
-					if(nav.getMenuId().equals(m.getMenuId())){
+
+	@Override
+	public List<TbMenus> selXtreeData1(TbAdmin admin) {
+		List<XtreeData> list = new ArrayList<>();
+		// 获取所有的权限菜单
+		TbMenusExample example = new TbMenusExample();
+		List<TbMenus> allMenus = tbMenusMapper.selectByExample(example);
+		// 获取指定角色的菜单
+		List<TbMenus> menus = adminMenusMapper.getMenus(admin.getRoleId());
+		for (TbMenus m : allMenus) {
+			if (m.getParentId() == 0) {
+				XtreeData x = new XtreeData();
+				x.setTitle(m.getTitle());
+				x.setValue(m.getMenuId() + "");
+				// 一级菜单选中
+				for (TbMenus mh : menus) {
+					if (mh.getMenuId() == m.getMenuId()) {
 						x.setChecked(true);
 						break;
 					}
-					
 				}
-	            childList.add(x);
-	        }
-	      }
-	    //递归
-	    for (XtreeData nav : childList) {
-	      nav.setData(getChild(Long.parseLong(nav.getValue()), allMenus,menus));
-	    }
-	    //如果节点下没有子节点，返回一个空List（递归退出）
-	    if(childList.size() == 0){
-	      return new ArrayList<XtreeData>();
-	    }
-	    return childList;
+				List<XtreeData> list2 = new ArrayList<>();
+				for (TbMenus m1 : allMenus) {
+					if (m1.getParentId() == m.getMenuId()) {
+						XtreeData x1 = new XtreeData();
+						x1.setTitle(m1.getTitle());
+						x1.setValue(m1.getMenuId() + "");
+						List<XtreeData> list3 = new ArrayList<>();
+						// 二级菜单选中
+						for (TbMenus mh : menus) {
+							if (mh.getMenuId() == m1.getMenuId()) {
+								x1.setChecked(true);
+								break;
+							}
+						}
+						for (TbMenus m2 : allMenus) {
+							if (m2.getParentId() == m1.getMenuId()) {
+								XtreeData x2 = new XtreeData();
+								x2.setTitle(m2.getTitle());
+								x2.setValue(m2.getMenuId() + "");
+								// 三级菜单选中
+								for (TbMenus mh1 : menus) {
+									if (mh1.getMenuId() == m2.getMenuId()) {
+										x2.setChecked(true);
+										break;
+									}
+								}
+								// 使数据data不为null
+								List<XtreeData> l = new ArrayList<>();
+								x2.setData(l);
+								list3.add(x2);
+							}
+						}
+
+						x1.setData(list3);
+						list2.add(x1);
+					}
+				}
+				x.setData(list2);
+				list.add(x);
+			}
+		}
+
+		// 拥有没有子节点的节点，设置选中
+		for (XtreeData xd : list) {
+			if (xd.getData() == null || xd.getData().size() == 0) {
+				for (TbMenus tbMenus : menus) {
+					if (tbMenus.getMenuId() == Long.parseLong(xd.getValue())) {
+						xd.setChecked(true);
+					}
+				}
+			}
+		}
+		// 默认拥有首页菜单权限
+		list.get(0).setDisabled(true);
+		list.get(0).setChecked(true);
+		return menus;
 	}
 
 	@Override
@@ -229,28 +255,15 @@ public class AdminServiceImpl implements AdminService {
 		com.irs.pojo.TbRolesMenusExample.Criteria criteria = example.createCriteria();
 		criteria.andRoleIdEqualTo(role.getRoleId());
 		tbRolesMenusMapper.deleteByExample(example);
-		// 更新权限信息
+		// 维护角色-菜单表
 		if (m != null && m.length() != 0) {
-			String[] array = m.split(",");  
-			List<String> result = new ArrayList<>();  
-			boolean flag;  
-			for(int i=0;i<array.length;i++){  
-			    flag = false;  
-			    for(int j=0;j<result.size();j++){  
-			        if(array[i].equals(result.get(j))){  
-			            flag = true;  
-			            break;  
-			        }  
-			    }  
-			    if(!flag){  
-			        result.add(array[i]);  
-			    }  
-			}  
+			String[] result = m.split(",");
 			// 重新赋予权限
-			if (result != null && result.size() > 0) {
-				for (int i = 0; i < result.size(); i++) {
-					TbRolesMenusKey record = new TbRolesMenusKey();
-					record.setMenuId(Long.parseLong(result.get(i)));
+			if (result != null && result.length > 0) {
+				for (int i = 0; i < result.length; i++) {
+					TbRolesMenus record = new TbRolesMenus();
+					record.setMenuId(Long.parseLong(result[i]));
+					TbMenus menu = tbMenusMapper.selectByPrimaryKey(Long.parseLong(result[i]));
 					record.setRoleId(role.getRoleId());
 					// 维护角色—菜单表
 					tbRolesMenusMapper.insert(record);
@@ -286,30 +299,17 @@ public class AdminServiceImpl implements AdminService {
 
 	@Override
 	public void insRole(TbRoles role, String m) {
-		//维护角色表
+		// 维护角色表
 		tbRolesMapper.insert(role);
 		// 维护角色-菜单表
 		if (m != null && m.length() != 0) {
-			String[] array = m.split(",");  
-			List<String> result = new ArrayList<>();  
-			boolean flag;  
-			for(int i=0;i<array.length;i++){  
-			    flag = false;  
-			    for(int j=0;j<result.size();j++){  
-			        if(array[i].equals(result.get(j))){  
-			            flag = true;  
-			            break;  
-			        }  
-			    }  
-			    if(!flag){  
-			        result.add(array[i]);  
-			    }  
-			}  
+			String[] result = m.split(",");
 			// 重新赋予权限
-			if (result != null && result.size() > 0) {
-				for (int i = 0; i < result.size(); i++) {
-					TbRolesMenusKey record = new TbRolesMenusKey();
-					record.setMenuId(Long.parseLong(result.get(i)));
+			if (result != null && result.length > 0) {
+				for (int i = 0; i < result.length; i++) {
+					TbRolesMenus record = new TbRolesMenus();
+					record.setMenuId(Long.parseLong(result[i]));
+					TbMenus menu = tbMenusMapper.selectByPrimaryKey(Long.parseLong(result[i]));
 					record.setRoleId(role.getRoleId());
 					// 维护角色—菜单表
 					tbRolesMenusMapper.insert(record);
