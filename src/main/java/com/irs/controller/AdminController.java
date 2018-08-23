@@ -246,11 +246,12 @@ public class AdminController {
 	 * @param roleName
 	 * @return
 	 */
-	@RequestMapping("/xtreedata")
+	@RequestMapping(value="/xtreedata",produces = {"text/json;charset=UTF-8"})
 	@ResponseBody
 	public String xtreeData(@RequestParam(value="roleId", defaultValue="-1") Long roleId) {
 		TbAdmin admin = new TbAdmin();
 		admin.setRoleId(roleId);
+		System.out.println(JsonUtils.objectToJson(adminServiceImpl.selXtreeData(admin)));
 		return JsonUtils.objectToJson(adminServiceImpl.selXtreeData(admin));
 	}
 	

@@ -14,7 +14,7 @@
 	<meta name="format-detection" content="telephone=no">
 	<link rel="stylesheet" href="${ctx }/layui/css/layui.css" media="all" />
 	<link rel="stylesheet" href="${ctx }/css/zTreeStyle/zTreeStyle.css" media="all" />
-	<script type="text/javascript" src="${ctx }/js/jquery-1.8.0.min.js"></script>
+	<script type="text/javascript" src="${ctx }/js/jquery-1.9.1.min.js"></script>
 	<script type="text/javascript" src="${ctx }/js/jquery.ztree.all.js"></script>
 	<script>  
         var ctx = "${ctx}";  
