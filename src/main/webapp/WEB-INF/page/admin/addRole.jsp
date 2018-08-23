@@ -13,6 +13,9 @@
 	<meta name="apple-mobile-web-app-capable" content="yes">
 	<meta name="format-detection" content="telephone=no">
 	<link rel="stylesheet" href="${ctx }/layui/css/layui.css" media="all" />
+	<link rel="stylesheet" href="${ctx }/css/zTreeStyle/zTreeStyle.css" media="all" />
+	<script type="text/javascript" src="${ctx }/js/jquery-1.8.0.min.js"></script>
+	<script type="text/javascript" src="${ctx }/js/jquery.ztree.all.js"></script>
 	<script>  
         var ctx = "${ctx}";  
     </script> 
@@ -42,9 +45,13 @@
 		<!--权限树xtree  -->
 		<div class="layui-form-item">
 			<label class="layui-form-label">分配权限：</label>
-	      	<div id="xtree1" style="width:250px;margin-left: 100px">
-	      	</div>
       	</div>
+      	<div style="padding-left:10%">
+	      	<input id="checkAllTrue" href="#" type="button" value="全选">
+			<input id="checkAllFalse" href="#" type="button" value="取消全选">
+      	</div>
+      	<ul id="xtree1" class="ztree" style="width:200px;margin-left: 100px"></ul>
+	      	
 		<div class="layui-form-item">
 			<div class="layui-input-block">
 				<button class="layui-btn" lay-submit="" lay-filter="editRole">立即提交</button>
@@ -52,7 +59,7 @@
 		</div>
 	</form>
 	<script type="text/javascript" src="${ctx }/layui/layui.js"></script>
-		<script type="text/javascript" src="${ctx }/js/layui-xtree.js"></script>
+		
 	<script type="text/javascript" src="${ctx }/page/admin/addRole.js"></script>
 </body>
 </html>
