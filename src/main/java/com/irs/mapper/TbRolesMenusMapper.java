@@ -1,5 +1,6 @@
 package com.irs.mapper;
 
+import com.irs.pojo.TbRolesMenus;
 import com.irs.pojo.TbRolesMenusExample;
 import com.irs.pojo.TbRolesMenusKey;
 import java.util.List;
@@ -12,7 +13,7 @@ public interface TbRolesMenusMapper {
 
     int deleteByPrimaryKey(TbRolesMenusKey key);
 
-    int insert(TbRolesMenusKey record);
+    int insert(TbRolesMenus record);
 
     int insertSelective(TbRolesMenusKey record);
 
@@ -21,4 +22,5 @@ public interface TbRolesMenusMapper {
     int updateByExampleSelective(@Param("record") TbRolesMenusKey record, @Param("example") TbRolesMenusExample example);
 
     int updateByExample(@Param("record") TbRolesMenusKey record, @Param("example") TbRolesMenusExample example);
+    
 }
