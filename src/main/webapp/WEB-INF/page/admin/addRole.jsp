@@ -45,13 +45,12 @@
 		<!--权限树xtree  -->
 		<div class="layui-form-item">
 			<label class="layui-form-label">分配权限：</label>
-      	</div>
-      	<div style="padding-left:10%">
-	      	<input id="checkAllTrue" href="#" type="button" value="全选">
-			<input id="checkAllFalse" href="#" type="button" value="取消全选">
-      	</div>
-      	<ul id="xtree1" class="ztree" style="width:200px;margin-left: 100px"></ul>
-	      	
+	      	<div style="padding-left:10%">
+		      	<input id="checkAllTrue" href="#" type="button" value="全选">
+				<input id="checkAllFalse" href="#" type="button" value="取消全选">
+	      	</div>
+	      	<ul id="xtree1" class="ztree" style="width:200px;margin-left: 105px"></ul>
+	    </div>
 		<div class="layui-form-item">
 			<div class="layui-input-block">
 				<button class="layui-btn" lay-submit="" lay-filter="editRole">立即提交</button>
