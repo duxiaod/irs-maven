@@ -40,8 +40,9 @@ layui.config({
 		
 		$("#eMail").blur(function(){
 			$.ajax({
-				type: "post",
-				url: ctx+"/sys/checkAdminByEmail/"+$("#eMail").val(),
+				type: "get",
+				url: ctx+"/sys/checkAdminByEmail",
+				data:{eMail:$("#eMail").val()},
 				success:function(data){
 					if(data.code!=0){
 						top.layer.msg(data.msg);

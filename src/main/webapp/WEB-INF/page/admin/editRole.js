@@ -25,6 +25,7 @@ layui.config({
 	        setTimeout(function(){
 	        	$.ajax({
 	                type: "POST",
+	                async:false,
 	                url: ctx+"/sys/updRole",
 	                data:$("#arf").serialize(),
 	            });
