@@ -12,6 +12,7 @@ import org.springframework.web.context.request.ServletRequestAttributes;
 import com.irs.pojo.TbAdmin;
 import com.irs.pojo.TbLog;
 import com.irs.service.LogService;
+import com.irs.util.JsonUtils;
 import com.irs.util.MyUtil;
 import com.irs.util.WebUtils;
 
@@ -61,7 +62,7 @@ public  class SystemLogAspect {
         String params = ""; 
         if (joinPoint.getArgs() !=  null && joinPoint.getArgs().length > 0) {    
             for ( int i = 0; i < joinPoint.getArgs().length; i++) {    
-           	 params+=joinPoint.getArgs()[i]+";";   
+           	 params+=JsonUtils.objectToJson(joinPoint.getArgs()[i])+";";   
            }    
        }    
          try {    
