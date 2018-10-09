@@ -42,7 +42,7 @@ http://www.springframework.org/schema/tx/spring-tx.xsd">
 				/sys/login=anon
 				/sys/index=anon
 				/druid/**=anon
-				/account/active=anon
+				/account/**=anon
 				/json/**=anon
 				/loginOut=logout
 				/**=authc
