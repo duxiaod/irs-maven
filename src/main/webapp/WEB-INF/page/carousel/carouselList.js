@@ -16,7 +16,7 @@ layui.config({
 		    ,cols: [[ //表头
               {type:'checkbox'}
               ,{field:'id', title: 'ID', sort: true}
-              ,{field:'imgurl', title: '轮播图',templet:'<div><img src="'+ctx+'/file/showPic?fileName={{ d.imgurl}}"></div>'}
+              ,{field:'imgurl', title: '轮播图',templet:'#tableImg'}
               ,{field:'imglink', title: '地址'}
               ,{field:'remark', title: '备注'}
               ,{field:'sorting', title: '排序'}

@@ -55,6 +55,9 @@
 	<script type="text/html" id="statusTpl">
   		<input type="checkbox" name="id" value="{{d.id}}" title="展示" lay-filter="lockStatus" {{ d.status == 1 ? 'checked' : '' }}>
 	</script>
+	<script type="text/html" id="tableImg">
+  		<img src="${ctx}/file/showPic?fileName={{d.imgurl}}" style="height:48px;width:48px;line-height:48px!important;"/>
+	</script>
 	<style>
 	.layui-table-cell{
 	    height:36px;
