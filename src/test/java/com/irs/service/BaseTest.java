@@ -1,5 +1,6 @@
 package com.irs.service;
 
+import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -17,4 +18,9 @@ public class BaseTest {
 	 * 日志对象
 	 */
 	protected Logger logger = LoggerFactory.getLogger(getClass());
+	
+	@Test
+	public void base(){
+		logger.info("==============您进入base测试方法啦==============");
+	}
 }

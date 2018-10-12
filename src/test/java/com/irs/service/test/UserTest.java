@@ -18,8 +18,10 @@ public class UserTest extends BaseTest {
 	
 	@Test
 	public void getUserById(){
-		TbUsers user=userServiceImpl.selUserByUid(39L);
-		System.out.println(user.getAddress());
+		TbUsers user=userServiceImpl.selUserByUid(27L);
+		if(user!=null){
+			System.out.println(user.getAddress());
+		}
 	}
 	
 	@Test
