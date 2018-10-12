@@ -17,7 +17,7 @@ irs致力于做更简洁的后台管理系统,完美整合springmvc + spring + s
 页面使用了layui
 
 ## 管理系统功能
-1.角色管理 2.管理员管理 3.菜单管理 4.用户管理 5.业务日志 6.SQL、URL和Spring监控 7.集成MyBatis逆向工程
+1.角色管理 2.管理员管理 3.菜单管理 4.用户管理 5.业务日志 6.SQL、URL和Spring监控 7.轮播图管理（图片的上传与回显）8.集成MyBatis逆向工程
 
 ## 项目特点
 1. 基于ssm+shiro
@@ -25,7 +25,8 @@ irs致力于做更简洁的后台管理系统,完美整合springmvc + spring + s
 3. 完善的日志记录体系，可记录登录日志，业务操作日志(可记录操作前和操作后的数据)，异常日志到数据库
 4. 日志删除修改为定时任务(每日21点删除30天以前的日志，配置在global.properties)
 5. 新增菜单管理、SQL、URL和Spring监控
-6. 逆向工程：根据数据库生成pojo和dao（新增），请自行修改配置generatorConfig.xml，配置完运行：com.irs.generator.GeneratorSqlmap.main方法即可。
+6. 轮播图管理（图片的上传与回显）
+7. 逆向工程：根据数据库生成pojo和dao（新增），请自行修改配置generatorConfig.xml，配置完运行：com.irs.generator.GeneratorSqlmap.main方法即可。
 
 ## 项目截图
 ![输入图片说明](https://gitee.com/uploads/images/2018/0325/145022_599a5d05_1045447.png "1.PNG")
