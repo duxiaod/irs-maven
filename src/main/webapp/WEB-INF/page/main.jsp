@@ -27,7 +27,7 @@
 <body class="childrenBody" style="margin: 1%">
 	<blockquote class="layui-elem-quote">
 		<p>欢迎使用信息发布后台系统！v1.0。</p>
-		<p>码云地址：<a href="https://gitee.com/ssuperdu/irs" target="_blank">https://gitee.com/ssuperdu/irs</a>&nbsp;&nbsp;&nbsp;记得点个star哦!</p>
+		<p>码云地址：<a href="https://gitee.com/ssuperdu/irs-maven" target="_blank">https://gitee.com/ssuperdu/irs-maven</a>&nbsp;&nbsp;&nbsp;记得点个star哦!</p>
 		<p>
 			作者QQ：<a href="tencent://message/?uin=593151321&Site=QQ交谈&Menu=yes"target="blank"><img border="0"src="http://wpa.qq.com/pa?p=1:593151321:7" alt="QQ593151321" width="71" height="24" /></a>
 </br>
