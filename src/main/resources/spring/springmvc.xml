@@ -28,6 +28,7 @@
 	<mvc:resources location="/js/" mapping="/js/**"/>
 	<mvc:resources location="/layui/" mapping="/layui/**"/>
 	<mvc:resources location="/json/" mapping="/json/**"/>
+	<mvc:resources location="/images/" mapping="/images/**"/>
 	<mvc:resources location="/WEB-INF/page/" mapping="/page/**"/>
 	
 	<aop:config proxy-target-class="true"/>
