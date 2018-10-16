@@ -143,7 +143,7 @@ layui.define('jquery', function(exports){
     //转化为日期格式字符
     ,toDateString: function(time, format){
       var that = this
-      ,date = new Date(parseInt(time) || new Date())
+      ,date = new Date(time || new Date())
       ,ymd = [
         that.digit(date.getFullYear(), 4)
         ,that.digit(date.getMonth() + 1)
@@ -164,7 +164,18 @@ layui.define('jquery', function(exports){
       .replace(/mm/g, hms[1])
       .replace(/ss/g, hms[2]);
     }
+    
+    //防 xss 攻击
+    ,escape: function(html){
+      return String(html || '').replace(/&(?!#?[a-zA-Z0-9]+;)/g, '&amp;')
+      .replace(/</g, '&lt;').replace(/>/g, '&gt;')
+      .replace(/'/g, '&#39;').replace(/"/g, '&quot;');
+    }
   };
   
+  //监听 DOM 尺寸变化，该创意来自：http://benalman.com/projects/jquery-resize-plugin/
+  !function(a,b,c){"$:nomunge";function l(){f=b[g](function(){d.each(function(){var b=a(this),c=b.width(),d=b.height(),e=a.data(this,i);(c!==e.w||d!==e.h)&&b.trigger(h,[e.w=c,e.h=d])}),l()},e[j])}var f,d=a([]),e=a.resize=a.extend(a.resize,{}),g="setTimeout",h="resize",i=h+"-special-event",j="delay",k="throttleWindow";e[j]=250,e[k]=!0,a.event.special[h]={setup:function(){if(!e[k]&&this[g])return!1;var b=a(this);d=d.add(b),a.data(this,i,{w:b.width(),h:b.height()}),1===d.length&&l()},teardown:function(){if(!e[k]&&this[g])return!1;var b=a(this);d=d.not(b),b.removeData(i),d.length||clearTimeout(f)},add:function(b){function f(b,e,f){var g=a(this),h=a.data(this,i)||{};h.w=e!==c?e:g.width(),h.h=f!==c?f:g.height(),d.apply(this,arguments)}if(!e[k]&&this[g])return!1;var d;return a.isFunction(b)?(d=b,f):(d=b.handler,b.handler=f,void 0)}}}($,window);
+  
+  //暴露接口
   exports('util', util);
 });

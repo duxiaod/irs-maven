@@ -63,7 +63,7 @@ layui.define('layer' , function(exports){
     ,bindAction: '' //手动上传触发的元素
     ,url: '' //上传地址
     ,field: 'file' //文件字段名
-    ,method: 'post' //请求上传的http类型
+    ,method: 'post' //请求上传的 http 类型
     ,data: {} //请求上传的额外参数
     ,drag: true //是否允许拖拽上传
     ,size: 0 //文件限制大小，默认不限制
@@ -88,7 +88,7 @@ layui.define('layer' , function(exports){
     var that = this
     ,options = that.config
     ,elemFile = that.elemFile = $([
-      '<input class="'+ ELEM_FILE +'" type="file" name="'+ options.field +'"'
+      '<input class="'+ ELEM_FILE +'" type="file" accept="'+ options.acceptMime +'" name="'+ options.field +'"'
       ,(options.multiple ? ' multiple' : '') 
       ,'>'
     ].join(''))
@@ -119,21 +119,21 @@ layui.define('layer' , function(exports){
     var that = this
     ,options = that.config
     ,iframe = $('<iframe id="'+ ELEM_IFRAME +'" class="'+ ELEM_IFRAME +'" name="'+ ELEM_IFRAME +'" frameborder="0"></iframe>')
-    ,elemForm = $(['<form target="'+ ELEM_IFRAME +'" class="'+ ELEM_FORM +'" method="'+ options.method
-      ,'" key="set-mine" enctype="multipart/form-data" action="'+ options.url +'">'
+    ,elemForm = $(['<form target="'+ ELEM_IFRAME +'" class="'+ ELEM_FORM +'" method="post" key="set-mine" enctype="multipart/form-data" action="'+ options.url +'">'
     ,'</form>'].join(''));
     
     //插入iframe    
     $('#'+ ELEM_IFRAME)[0] || $('body').append(iframe);
 
     //包裹文件域
-    if(!options.elem.next().hasClass(ELEM_IFRAME)){
+    if(!options.elem.next().hasClass(ELEM_FORM)){
       that.elemFile.wrap(elemForm);      
       
       //追加额外的参数
-      options.elem.next('.'+ ELEM_IFRAME).append(function(){
+      options.elem.next('.'+ ELEM_FORM).append(function(){
         var arr = [];
         layui.each(options.data, function(key, value){
+          value = typeof value === 'function' ? value() : value;
           arr.push('<input type="hidden" name="'+ key +'" value="'+ value +'">')
         });
         return arr.join('');
@@ -196,17 +196,19 @@ layui.define('layer' , function(exports){
         
         //追加额外的参数
         layui.each(options.data, function(key, value){
+          value = typeof value === 'function' ? value() : value;
           formData.append(key, value);
         });
         
         //提交文件
         $.ajax({
           url: options.url
-          ,type: options.method
+          ,type: 'post'
           ,data: formData
           ,contentType: false 
           ,processData: false
           ,dataType: 'json'
+          ,headers: options.headers || {}
           ,success: function(res){
             successful++;
             done(index, res);
@@ -285,14 +287,17 @@ layui.define('layer' , function(exports){
     
     //回调返回的参数
     ,args = {
+      //预览
       preview: function(callback){
         that.preview(callback);
       }
+      //上传
       ,upload: function(index, file){
         var thisFile = {};
         thisFile[index] = file;
         that.upload(thisFile);
       }
+      //追加文件到队列
       ,pushFile: function(){
         that.files = that.files || {};
         layui.each(that.chooseFiles, function(index, item){
@@ -300,12 +305,22 @@ layui.define('layer' , function(exports){
         });
         return that.files;
       }
+      //重置文件
+      ,resetFile: function(index, file, filename){
+        var newFile = new File([file], filename);
+        that.files = that.files || {};
+        that.files[index] = newFile;
+      }
     }
     
     //提交上传
-    ,send = function(){
-      if(type === 'choose'){
-        return options.choose && options.choose(args);
+    ,send = function(){      
+      //选择文件的回调      
+      if(type === 'choose' || options.auto){
+        options.choose && options.choose(args);
+        if(type === 'choose'){
+          return;
+        }
       }
       
       //上传前的回调
@@ -378,12 +393,9 @@ layui.define('layer' , function(exports){
       layui.each(that.chooseFiles, function(index, file){
         if(file.size > 1024*options.size){
           var size = options.size/1024;
-          size = size >= 1 
-            ? (Math.floor(size) + (size%1 > 0 ? size.toFixed(1) : 0)) + 'MB' 
-          : options.size + 'KB'
+          size = size >= 1 ? (size.toFixed(2) + 'MB') : options.size + 'KB'
           elemFile.value = '';
           limitSize = size;
-          
         }
       });
       if(limitSize) return that.msg('文件不能超过'+ limitSize);

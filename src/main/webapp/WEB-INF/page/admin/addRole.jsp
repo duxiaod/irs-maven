@@ -13,7 +13,7 @@
 	<meta name="apple-mobile-web-app-capable" content="yes">
 	<meta name="format-detection" content="telephone=no">
 	<link rel="stylesheet" href="${ctx }/layui/css/layui.css" media="all" />
-	<link rel="stylesheet" href="${ctx }/css/zTreeStyle/zTreeStyle.css" media="all" />
+	<link rel="stylesheet" href="${ctx }/css/zTreeStyle/zTreeStyle.css" media="all"  type="text/css"/>
 	<script type="text/javascript" src="${ctx }/js/jquery-1.9.1.min.js"></script>
 	<script type="text/javascript" src="${ctx }/js/jquery.ztree.all.js"></script>
 	<script>  

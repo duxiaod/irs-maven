@@ -1,6 +1,6 @@
 ﻿/**
 
- @Name：layer v3.1.1 Web弹层组件
+ @Name：layer v3.1.2 Web弹层组件
  @Author：贤心
  @Site：http://layer.layui.com
  @License：MIT
@@ -287,7 +287,7 @@ Class.pt.creat = function(){
       layer.closeAll('dialog');
     break;
     case 2:
-      var content = config.content = conType ? config.content : [config.content||'http://layer.layui.com', 'auto'];
+      var content = config.content = conType ? config.content : [config.content||'', 'auto'];
       config.content = '<iframe scrolling="'+ (config.content[1]||'auto') +'" allowtransparency="true" id="'+ doms[4] +''+ times +'" name="'+ doms[4] +''+ times +'" onload="this.className=\'\';" class="layui-layer-load" frameborder="0" src="' + config.content[0] + '"></iframe>';
     break;
     case 3:
@@ -982,8 +982,8 @@ layer.prompt = function(options, yes){
     style = 'style="width: '+ area[0] +'; height: '+ area[1] + ';"';
     delete options.area;
   }
-  var prompt, content = options.formType == 2 ? '<textarea class="layui-layer-input"' + style +'>' + (options.value||'') +'</textarea>' : function(){
-    return '<input type="'+ (options.formType == 1 ? 'password' : 'text') +'" class="layui-layer-input" value="'+ (options.value||'') +'">';
+  var prompt, content = options.formType == 2 ? '<textarea class="layui-layer-input"' + style +'></textarea>' : function(){
+    return '<input type="'+ (options.formType == 1 ? 'password' : 'text') +'" class="layui-layer-input">';
   }();
   
   var success = options.success;
@@ -997,7 +997,7 @@ layer.prompt = function(options, yes){
     ,maxWidth: win.width()
     ,success: function(layero){
       prompt = layero.find('.layui-layer-input');
-      prompt.focus();
+      prompt.val(options.value || '').focus();
       typeof success === 'function' && success(layero);
     }
     ,resize: false

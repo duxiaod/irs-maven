@@ -38,6 +38,7 @@
 		<button class="layui-btn layui-btn-primary">（不选中为添加顶级菜单，选中添加子菜单）</button>
 	</div>
 	<div>
+	
 		<table class="layui-hidden" id="treeTable" lay-filter="treeTable"></table>
 	</div>
 	<script>
@@ -60,7 +61,8 @@
 						cols : [ [ {
 							field : 'menuId',
 							title : ' ',
-							templet : "#radioTpl",
+							//templet : "#radioTpl",
+							type: 'checkbox',
 							unresize : true
 						}, {
 							field : 'title',
@@ -130,7 +132,15 @@
 					});
 
 					$("#addMenu").click(function() {
-						var a = $("input[name='menuId']:checked").val();
+						var checkStatus = treeGrid.checkStatus('treeTable')
+					      ,data = checkStatus.data;
+						if(data.length>1){
+							layer.msg("只能选择一个！", {
+								icon : 5
+							});
+							return ;
+						}
+						var a=data[0].menuId;
 						if (a == undefined || a != 1) {
 							if (a == undefined) {
 								a = 0;
@@ -155,7 +165,16 @@
 					})
 
 					$("#editMenu").click(function() {
-						var a = $("input[name='menuId']:checked").val();
+						var checkStatus = treeGrid.checkStatus('treeTable')
+					      ,data = checkStatus.data;
+						if(data.length>1){
+							layer.msg("只能选择一个！", {
+								icon : 5
+							});
+							return ;
+						}
+						
+						var a = data[0].menuId;
 						if (a == undefined) {
 							layer.msg("请选择要操作的菜单！", {
 								icon : 5
@@ -179,7 +198,16 @@
 					})
 
 					$("#delMenu").click(function() {
-						var a = $("input[name='menuId']:checked").val();
+						var checkStatus = treeGrid.checkStatus('treeTable')
+					      ,data = checkStatus.data;
+						if(data.length>1){
+							layer.msg("只能选择一个！", {
+								icon : 5
+							});
+							return ;
+						}
+						
+						var a = data[0].menuId;
 						if (a == undefined) {
 							layer.msg("请选择要操作的菜单！", {
 								icon : 5
@@ -215,58 +243,13 @@
 						});
 
 					})
-
-					//radio选中监听
-					/* form.on("radio(radiodemo)",function(obj) {
-					    layer.tips(this.value+" "+this.name+":"+obj.elem.checked,obj.othis);
-					  }); */
-
-					//监听工具条
-					/* table.on('tool(treeTable)', function(obj){
-					  if(obj.event === 'del'){
-					  	if(data.roleName=='超级管理员'){
-					  		layer.msg("不允许操作此角色！",{icon: 5});
-					  		return;
-					  	}
-					  	if(data.id==adminId){
-					  		layer.msg("不允许删除自己！",{icon: 5});
-					  		return;
-					  	}
-					    layer.confirm('真的删除行么', function(index){
-					  	  $.ajax({
-					  		  url:ctx+'/sys/delAdminById/'+data.id,
-					  		  type : "get",
-					  		  success : function(d){
-					  			  if(d.code==0){
-					  				  //obj.del();
-					  				  table.reload('adminList', {})
-					  			  }else{
-					  				  layer.msg("权限不足，联系超管！",{icon: 5});
-					  			  }
-					  		  }
-					  	  })
-					      layer.close(index);
-					    });
-					  } else if(obj.event === 'edit'){
-					  	if(data.menuId==1){
-					  		layer.msg("不允许操作此数据！",{icon: 5});
-					  		return;
-					  	}
-					    layer.open({
-					  	  type: 2,
-					  	  title:"编辑角色",
-					  	  area: ['380px', '560px'],
-					  	  content:ctx+"/sys/toEditMenu/"+data.menuId //这里content是一个普通的String
-					    })
-					  }
-					}); */
 				});
 	</script>
 
 	<script type="text/html" id="barTools">
-<a class="layui-btn layui-btn-xs" lay-event="edit">编辑</a>
-<a class="layui-btn layui-btn-danger layui-btn-xs" lay-event="del">删除</a>
-</script>
+		<a class="layui-btn layui-btn-xs" lay-event="edit">编辑</a>
+		<a class="layui-btn layui-btn-danger layui-btn-xs" lay-event="del">删除</a>
+	</script>
 	<script type="text/html" id="iconTpl">
  		 {{#  if(d.icon === null){ }}
    			
@@ -275,7 +258,7 @@
   		{{#  } }}
 	</script>
 	<script type="text/html" id="radioTpl">
-  <input type="radio" name="menuId" value="{{d.menuId}}" title=" " lay-filter="radiodemo">
-</script>
+  		<span style="top:50%"><input type="radio" name="menuId" value="{{d.menuId}}" title=" " lay-filter="radiodemo"></span>
+	</script>
 </body>
 </html>
