@@ -466,4 +466,9 @@ public class AdminServiceImpl implements AdminService {
 		List<TbMenus> data = tbMenusMapper.selectByExample(example);
 		return data;
 	}
+
+	@Override
+	public TbRoles getRole(TbRoles role) {
+		return tbRolesMapper.selectByPrimaryKey(role.getRoleId());
+	}
 }

@@ -89,4 +89,6 @@ public interface AdminService {
 	public void updMenuSortingById(TbMenus menus);
 
 	public List<TbMenus> checkTitleSameLevel(TbMenus menus);
+
+	public TbRoles getRole(TbRoles role);
 }

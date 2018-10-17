@@ -33,6 +33,7 @@ import com.irs.pojo.TbMenus;
 import com.irs.pojo.TbRoles;
 import com.irs.pojo.XtreeData;
 import com.irs.service.AdminService;
+import com.irs.util.GlobalUtil;
 import com.irs.util.JsonUtils;
 import com.irs.util.RRException;
 import com.irs.util.ResultUtil;
@@ -74,14 +75,12 @@ public class AdminController {
 	@RequestMapping("/login")
 	@ResponseBody
 	public ResultUtil login(HttpServletRequest req, String username, String password, String vcode) {
-		if(StringUtils.isEmpty(vcode)||StringUtils.isEmpty(username)||StringUtils.isEmpty(password)){
+		if(StringUtils.isEmpty(username)||StringUtils.isEmpty(password)||StringUtils.isEmpty(vcode)){
 			throw new RRException("参数不能为空");
 		}
-		String kaptcha = ShiroUtils.getKaptcha("kaptcha").toLowerCase();
-		if(!vcode.toLowerCase().equals(kaptcha)){
+		if(!vcode.toLowerCase().equals(ShiroUtils.getKaptcha("kaptcha").toLowerCase())){
 			return ResultUtil.error("验证码不正确");
 		}
-		
 		try{
 			Subject subject = ShiroUtils.getSubject();
 			//md5加密
@@ -231,12 +230,9 @@ public class AdminController {
 	 */
 	@RequestMapping("/editRole")
 	@RequiresPermissions("sys:role:update")
-	public String editRole(Long roleId,String roleName,String roleRemark,HttpServletRequest req) {
-		TbRoles role=new TbRoles();
-		role.setRoleId(roleId);
-		role.setRoleName(roleName);
-		role.setRoleRemark(roleRemark);
-		req.setAttribute("role", role);
+	public String editRole(TbRoles role,Model model) {
+		role=adminServiceImpl.getRole(role);
+		model.addAttribute("role", role);
 		return "page/admin/editRole";
 	}
 	

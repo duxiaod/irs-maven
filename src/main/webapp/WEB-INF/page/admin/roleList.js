@@ -73,7 +73,7 @@ layui.config({
 		    	  type: 2,
 		    	  title:"编辑角色",
 		    	  area: ['380px', '600px'],
-		    	  content:ctx+"/sys/editRole?roleId="+data.roleId+"&roleName="+data.roleName+"&roleRemark="+data.roleRemark, //这里content是一个普通的String
+		    	  content:ctx+"/sys/editRole?roleId="+data.roleId, //这里content是一个普通的String
 		      })
 		    }
 		  });
