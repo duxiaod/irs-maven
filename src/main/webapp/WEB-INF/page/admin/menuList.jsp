@@ -133,14 +133,16 @@
 
 					$("#addMenu").click(function() {
 						var checkStatus = treeGrid.checkStatus('treeTable')
-					      ,data = checkStatus.data;
+					      ,data = checkStatus.data,a=0;
 						if(data.length>1){
 							layer.msg("只能选择一个！", {
 								icon : 5
 							});
 							return ;
 						}
-						var a=data[0].menuId;
+						if(data!=''){
+							a=data[0].menuId;
+						}
 						if (a == undefined || a != 1) {
 							if (a == undefined) {
 								a = 0;
@@ -166,16 +168,18 @@
 
 					$("#editMenu").click(function() {
 						var checkStatus = treeGrid.checkStatus('treeTable')
-					      ,data = checkStatus.data;
+					      ,data = checkStatus.data,a='';
 						if(data.length>1){
 							layer.msg("只能选择一个！", {
 								icon : 5
 							});
 							return ;
 						}
+						if(data!=''){
+							a=data[0].menuId;
+						}
 						
-						var a = data[0].menuId;
-						if (a == undefined) {
+						if (a == '') {
 							layer.msg("请选择要操作的菜单！", {
 								icon : 5
 							});
@@ -199,16 +203,17 @@
 
 					$("#delMenu").click(function() {
 						var checkStatus = treeGrid.checkStatus('treeTable')
-					      ,data = checkStatus.data;
+					      ,data = checkStatus.data,a='';
 						if(data.length>1){
 							layer.msg("只能选择一个！", {
 								icon : 5
 							});
 							return ;
 						}
-						
-						var a = data[0].menuId;
-						if (a == undefined) {
+						if(data!=''){
+							a=data[0].menuId;
+						}
+						if (a == '') {
 							layer.msg("请选择要操作的菜单！", {
 								icon : 5
 							});
