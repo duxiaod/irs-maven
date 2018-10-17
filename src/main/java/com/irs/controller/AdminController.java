@@ -599,7 +599,7 @@ public class AdminController {
 			List<TbMenus> data=adminServiceImpl.checkTitleSameLevel(menus);
 			TbMenus m = adminServiceImpl.selMenuById(menus.getMenuId());
 			Boolean f=false;
-			if(m.getTitle().equals(menus.getTitle())){
+			if(m.getTitle().equals(menus.getTitle())||data.size()==0){
 				f=true;
 			}
 			if(!f||data.size()>1){
