@@ -2,10 +2,10 @@ var $;
 var $form;
 var form;
 layui.config({
-	base : "js/"
-}).use(['form','layer','jquery','laydate'],function(){
+	base : "../../js/"
+}).use(['form','layer','jquery','laydate','iconPicker'],function(){
 	var layer = parent.layer === undefined ? layui.layer : parent.layer,
-		laypage = layui.laypage,laydate = layui.laydate;
+		laypage = layui.laypage,laydate = layui.laydate,iconPicker = layui.iconPicker;
 		$ = layui.jquery;
 		form = layui.form;
 		/*$("#title").blur(function(){
@@ -25,6 +25,24 @@ layui.config({
 	            }
 	        });
 		});*/
+		
+		iconPicker.render({
+            // 选择器，推荐使用input
+            elem: '#iconPicker',
+            // 数据类型：fontClass/unicode，推荐使用fontClass
+            type: 'unicode',
+            // 是否开启搜索：true/false
+            search: true,
+            // 是否开启分页
+            page: true,
+            // 每页显示数量，默认12
+            limit: 12,
+            // 点击回调
+            click: function (data) {
+                console.log(data);
+            }
+        });
+
 		
 
  	form.on("submit(menuForm)",function(data){

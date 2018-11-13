@@ -14,6 +14,7 @@
 <meta name="apple-mobile-web-app-capable" content="yes">
 <meta name="format-detection" content="telephone=no">
 <link rel="stylesheet" href="${ctx }/layui/css/layui.css" media="all" />
+<link rel="stylesheet" href="${ctx }/css/iconfont.css" media="all" />
 <script>  
         <%--JS gloable varilible--%>  
         var ctx = "${ctx}";  
@@ -48,9 +49,9 @@
 		<div class="layui-form-item">
 			<label class="layui-form-label">图标</label>
 			<div class="layui-input-block">
-				<input type="text" class="layui-input userName"
+				<input type="text" id="iconPicker" lay-filter="iconPicker" class="layui-input userName"
 					 placeholder="请填写图标代码" name="icon" value="${menu.icon }">
-					<label>（例：<text>&amp;#xe642;</text>）</label>
+					<label></label>
 			</div>
 		</div>
 		<div class="layui-form-item">
