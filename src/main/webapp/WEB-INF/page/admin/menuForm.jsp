@@ -14,7 +14,6 @@
 <meta name="apple-mobile-web-app-capable" content="yes">
 <meta name="format-detection" content="telephone=no">
 <link rel="stylesheet" href="${ctx }/layui/css/layui.css" media="all" />
-<link rel="stylesheet" href="${ctx }/css/iconfont.css" media="all" />
 <script>  
         <%--JS gloable varilible--%>  
         var ctx = "${ctx}";  
