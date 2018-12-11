@@ -23,7 +23,7 @@
 </style>
 </head>
 <body class="childrenBody">
-	<input type="hidden" id="adminId" value="<shiro:principal property="id"/>
+	<input type="hidden" id="adminId" value="<shiro:principal property='id'"/>
 	<blockquote class="layui-elem-quote list_search">
 		<shiro:hasPermission name="carousel:carousel:save">
 			<div class="layui-inline">
