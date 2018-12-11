@@ -89,6 +89,15 @@
 			<li class="layui-timeline-item"><i
 				class="layui-icon layui-timeline-axis"></i>
 				<div class="layui-timeline-content layui-text">
+					<h3 class="layui-timeline-title">2018年12月11日</h3>
+					<p>
+						1.新增对多数据源(使用方法：在controller层使用注解@DataSource(dataSource="数据源名")即可)
+						<i class="layui-icon"></i>
+					</p>
+				</div></li>
+			<li class="layui-timeline-item"><i
+				class="layui-icon layui-timeline-axis"></i>
+				<div class="layui-timeline-content layui-text">
 					<h3 class="layui-timeline-title">2018年07月29日</h3>
 					<p>
 						1.新增：菜单排序(tb_menus新增字段sorting)、时间线、菜单排序列单元格单击可快速修改排序值。 <br>

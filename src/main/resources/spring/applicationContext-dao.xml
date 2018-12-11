@@ -22,16 +22,49 @@
 		<property name="minIdle" value="5" />
 		<property name="filters" value="stat,log4j" />
 	</bean>
+	<!-- 数据库连接池 -->
+	<bean id="dataSource1" class="com.alibaba.druid.pool.DruidDataSource"
+		destroy-method="close">
+		<property name="url" value="${jdbc.url1}" />
+		<property name="username" value="${jdbc.username1}" />
+		<property name="password" value="${jdbc.password1}" />
+		<property name="driverClassName" value="${jdbc.driver1}" />
+		<property name="maxActive" value="10" />
+		<property name="minIdle" value="5" />
+		<property name="filters" value="stat,log4j" />
+	</bean>
 	<!-- 配置sqlsessionFactory -->
 	<bean id="sqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">
 		<property name="configLocation" value="classpath:mybatis/SqlMapConfig.xml"></property>
-		<property name="dataSource" ref="dataSource"></property>
+		<property name="dataSource" ref="dynamicDataSource"></property>
 	</bean>
+	<!-- 配置SqlSessionTemplate -->
+    <bean id="sqlSessionTemplate" class="org.mybatis.spring.SqlSessionTemplate">
+        <constructor-arg name="sqlSessionFactory" ref="sqlSessionFactory" />
+    </bean>
 	<!-- 配置扫描包，加载mapper代理对象 -->
 	<bean class="org.mybatis.spring.mapper.MapperScannerConfigurer">
 		<property name="basePackage" value="com.irs.mapper"></property>
 	</bean>
 	
+	<!-- 开启aop，对类代理 -->
+	<aop:aspectj-autoproxy proxy-target-class="true" />
+	<!-- 配置数据库注解aop -->
+	<!-- 自定义数据源切换类 -->
+    <bean id="dynamicDataSource" class="com.irs.annotation.DynamicDataSource">
+        <!-- 这里可以指定默认的数据源 -->
+        <property name="defaultTargetDataSource" ref="dataSource" />
+        <property name="targetDataSources">
+            <map key-type="java.lang.String">
+                <!-- 指定lookupKey和与之对应的数据源 -->
+                <entry key="dataSource" value-ref="dataSource"></entry>
+                <entry key="dataSource1" value-ref="dataSource1"></entry>
+            </map>
+        </property>
+    </bean>
+    
+    <bean id="logAopAction" class="com.irs.annotation.DataSourceAspect"/>
+
 	<!-- 验证码 -->
 	<bean id="captchaProducer" class="com.google.code.kaptcha.impl.DefaultKaptcha">  
         <property name="config">  
