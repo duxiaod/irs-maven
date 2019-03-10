@@ -78,7 +78,7 @@ public class AdminController {
 		if(StringUtils.isEmpty(username)||StringUtils.isEmpty(password)||StringUtils.isEmpty(vcode)){
 			throw new RRException("参数不能为空");
 		}
-		if(!vcode.toLowerCase().equals(ShiroUtils.getKaptcha("kaptcha").toLowerCase())){
+		if(!vcode.toLowerCase().equals(((String)req.getSession().getAttribute("kaptcha")).toLowerCase())){
 			return ResultUtil.error("验证码不正确");
 		}
 		try{
@@ -142,7 +142,8 @@ public class AdminController {
 		// 把文本保存到session中，为验证做准备
 		//req.getSession().setAttribute("vcode", vc.getText());
 		//保存到shiro session
-        ShiroUtils.setSessionAttribute("kaptcha", text);
+//        ShiroUtils.setSessionAttribute("kaptcha", text);
+        req.getSession().setAttribute("kaptcha",text);
 		//VerifyCode.output(image, resp.getOutputStream());// 把图片写到指定流中
 		ImageIO.write(image, "JPEG", resp.getOutputStream());
 	}
