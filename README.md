@@ -1,5 +1,8 @@
 基于eclipse+maven+ssm+shiro+layui的后台权限管理系统(maven版)
 
+## 优先体验
+<a target="_blank" href="http://188.131.191.144/ssm/">点击此处体验</a>
+
 QQ交流群： **473676340**  需要的加一下共同学习！
 <a target="_blank" href="//shang.qq.com/wpa/qunwpa?idkey=f384135efb8788553add1b9ac1470e679cce6528e96f2ac271a37cadf1d2c3df"><img border="0" src="//pub.idqqimg.com/wpa/images/group.png" alt="JAVA交流" title="JAVA交流"></a>
 
@@ -30,9 +33,6 @@ irs致力于做更简洁的后台管理系统,完美整合springmvc + spring + s
 6. 轮播图管理（图片的上传与回显）
 7. 逆向工程：根据数据库生成pojo和dao（新增），请自行修改配置generatorConfig.xml，配置完运行：com.irs.generator.GeneratorSqlmap.main方法即可。
 8. 对多数据源提供支持（使用方法：在controller层使用注解@DataSource(dataSource="数据源名")）
-
-##体验地址
-<a target="_blank" href="http://188.131.191.144/ssm/">http://188.131.191.144/ssm/</a>
 
 ## 项目截图
 ![输入图片说明](https://gitee.com/uploads/images/2018/0325/145022_599a5d05_1045447.png "1.PNG")
