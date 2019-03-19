@@ -182,6 +182,7 @@ public class DateUtil {
         return DateUtil.getStringDate(date, DateUtil.DateFormat2);
     }
     
+    
     /**
      * 传入LONG 返回 时分秒
      * @param diff
