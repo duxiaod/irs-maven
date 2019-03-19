@@ -51,7 +51,7 @@ public class EmailUtil {
         // 2.3 设置邮件主题
         message.setSubject("欢迎您注册我们网站");
         // 2.4 设置邮件的正文
-        message.setContent("<h1>请点击<a href='http://127.0.0.1:8080/irs/account/active/"+msg+"'>此链接</a>以激活账号</h1>", "text/html;charset=utf-8");
+        message.setContent("<h1>请点击<a href='http://188.131.191.144/ssm/account/active/"+msg+"'>此链接</a>以激活账号</h1>", "text/html;charset=utf-8");
 
         // 3.发送邮件
         Transport.send(message);

@@ -7,7 +7,6 @@
 	<version>0.0.1-SNAPSHOT</version>
 	<name>permission Maven Webapp</name>
 	<url>http://maven.apache.org</url>
-
 	<properties>
 		<spring.version>4.3.6.RELEASE</spring.version>
 		<mysql.version>5.1.30</mysql.version>
