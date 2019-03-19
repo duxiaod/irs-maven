@@ -4,7 +4,9 @@ import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
 
-import org.apache.log4j.Logger;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 
 /**
  * 时间处理类
@@ -12,7 +14,7 @@ import org.apache.log4j.Logger;
  *
  */
 public class DateUtil {
-    private static Logger LOGGER = Logger.getLogger(DateUtil.class);
+    private static Logger LOGGER = LoggerFactory.getLogger(DateUtil.class);
 
     /**
      * Format String : yyyy-MM-dd HH:mm:ss
@@ -83,7 +85,7 @@ public class DateUtil {
         try {
             ret = sdf.format(date);
         } catch (Exception ex) {
-            LOGGER.error(ex, ex);
+            LOGGER.error(ex.toString(), ex);
         }
         return ret;
     }
@@ -127,7 +129,7 @@ public class DateUtil {
             String integerDate = stringDate.replaceAll("-", "").replaceAll("/", "").replaceAll("年", "").replaceAll("月", "").replaceAll("日", "").replaceAll("：", ":");
             ret = sdf.parse(integerDate);
         } catch (Exception ex) {
-            LOGGER.error(ex, ex);
+            LOGGER.error(ex.toString(), ex);
         }
         return ret;
     }
