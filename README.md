@@ -1,7 +1,7 @@
 基于eclipse+maven+ssm+shiro+layui的后台权限管理系统(maven版)
 
 ## 优先体验
-<a target="_blank" href="http://188.131.191.144/ssm/">http://188.131.191.144/ssm/</a>
+<a target="_blank" href="http://bd720.cn:8081/ssm/">http://bd720.cn:8081/ssm/</a>
 
 QQ交流群： **473676340**  需要的加一下共同学习！
 <a target="_blank" href="//shang.qq.com/wpa/qunwpa?idkey=f384135efb8788553add1b9ac1470e679cce6528e96f2ac271a37cadf1d2c3df"><img border="0" src="//pub.idqqimg.com/wpa/images/group.png" alt="JAVA交流" title="JAVA交流"></a>
