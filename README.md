@@ -34,6 +34,11 @@ irs致力于做更简洁的后台管理系统,完美整合springmvc + spring + s
 7. 逆向工程：根据数据库生成pojo和dao（新增），请自行修改配置generatorConfig.xml，配置完运行：com.irs.generator.GeneratorSqlmap.main方法即可。
 8. 对多数据源提供支持（使用方法：在controller层使用注解@DataSource(dataSource="数据源名")）
 
+## 踩坑必看
+1. 日期类型操作，需要加:@DateTimeFormat(pattern = "yyyy-MM-dd HH:mm:ss")。
+2. 不需要鉴权的（如：不需要登录的app接口开发。）需要在shiro配置文件（applicationContext-shiro.xml）放行。例如：/account/**=anon  
+3. 静态资源放行：shiro放行参考2，springmvc静态资源放行需要设置（springmvc.xml），例如：<mvc:resources location="/css/" mapping="/css/**"/>
+
 ## 项目截图
 ![输入图片说明](https://gitee.com/uploads/images/2018/0325/145022_599a5d05_1045447.png "1.PNG")
 ![输入图片说明](https://gitee.com/uploads/images/2018/0519/223825_8fe428e9_1045447.png "QQ截1111.png")
