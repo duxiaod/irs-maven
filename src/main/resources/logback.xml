@@ -34,7 +34,12 @@
         </layout>
     </appender>
 
-    <logger name="com.irs" additivity="flase" level="${logLevel}">
+    <!--<logger name="com.irs" additivity="flase" level="${logLevel}">-->
+        <!--<appender-ref ref="STDOUT"/>-->
+        <!--<appender-ref ref="logFile" />-->
+    <!--</logger>-->
+
+    <logger name="root" level="${logLevel}">
         <appender-ref ref="STDOUT"/>
         <appender-ref ref="logFile" />
     </logger>
