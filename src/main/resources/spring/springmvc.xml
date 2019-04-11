@@ -12,6 +12,8 @@
         http://www.springframework.org/schema/context/spring-context.xsd
         http://www.springframework.org/schema/mvc
         http://www.springframework.org/schema/mvc/spring-mvc.xsd">
+
+	<mvc:default-servlet-handler />
 	<context:component-scan base-package="com.irs.controller,com.irs.annotation,com.irs.shiro" />
 	<!-- 配置标签使springmvc注解生效 -->
     <aop:aspectj-autoproxy/> 
@@ -22,6 +24,11 @@
 		<property name="prefix" value="/WEB-INF/" />
 		<property name="suffix" value=".jsp" />
 	</bean>
+
+	<!--添加swagger配置-->
+	<bean class="springfox.documentation.swagger2.configuration.Swagger2DocumentationConfiguration" id="swagger2Config"/>
+	<mvc:resources location="classpath:/META-INF/resources/" mapping="swagger-ui.html"/>
+	<mvc:resources location="classpath:/META-INF/resources/webjars/" mapping="/webjars/**"/>
 	
 	<!-- 资源映射 -->
 	<mvc:resources location="/css/" mapping="/css/**"/>

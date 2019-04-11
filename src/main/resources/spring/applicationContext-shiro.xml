@@ -45,6 +45,11 @@ http://www.springframework.org/schema/tx/spring-tx.xsd">
 				/account/**=anon
 				/json/**=anon
 				/images/**=anon
+				/swagger-ui.html = anon
+				/webjars/** = anon
+				/v2/** = anon
+				/swagger-resources/** = anon
+				/api/login = anon
 				/loginOut=logout
 				/**=authc
 			</value>
@@ -67,8 +72,19 @@ http://www.springframework.org/schema/tx/spring-tx.xsd">
         <property name="globalSessionTimeout" value="86400000"/>
         <!-- 删除失效的session -->
         <property name="deleteInvalidSessions" value="true"/>
+
+		<!--
+            是否启用/禁用Session Id Cookie，默认是启用的；
+            如果禁用后将不会设置Session Id Cookie，即默认使用了Servlet容器的JSESSIONID，
+            且通过URL重写（URL中的“;JSESSIONID=id”部分）保存Session Id。
+        -->
+		<!--<property name="sessionIdCookieEnabled" value="true"/>
+		<property name="sessionIdCookie" ref="sessionIdCookie"/>-->
     </bean>
-	
+
+	<!--<bean id="sessionIdCookie" class="org.apache.shiro.web.servlet.SimpleCookie">
+		<property name="name" value="irs_sid"/>
+	</bean>-->
 	
 		<!-- 自定义Realm -->
 	<bean id="customRealm" class="com.irs.shiro.CustomRealm">
