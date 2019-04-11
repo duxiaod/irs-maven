@@ -34,7 +34,7 @@ irs致力于做更简洁的后台管理系统,完美整合springmvc + spring + s
 7. 逆向工程：根据数据库生成pojo和dao（新增），请自行修改配置generatorConfig.xml，配置完运行：com.irs.generator.GeneratorSqlmap.main方法即可。
 8. 对多数据源提供支持（使用方法：在controller层使用注解@DataSource(dataSource="数据源名")）
 9. 集成接口工具：swagger   访问：http://localhost:8088/swagger-ui.html#/ 或者通过菜单进入
-10.新增ApiController,方便接口开发
+10. 新增ApiController类,方便接口开发
 
 
 ## 踩坑必看
