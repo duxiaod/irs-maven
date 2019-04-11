@@ -38,6 +38,9 @@ irs致力于做更简洁的后台管理系统,完美整合springmvc + spring + s
 1. 日期类型操作，需要加:@DateTimeFormat(pattern = "yyyy-MM-dd HH:mm:ss")。
 2. 不需要鉴权的（如：不需要登录的app接口开发。）需要在shiro配置文件（applicationContext-shiro.xml）放行。例如：/account/**=anon  
 3. 静态资源放行：shiro放行参考2，springmvc静态资源放行需要设置（springmvc.xml），例如：<mvc:resources location="/css/" mapping="/css/**"/>
+4. 部署成功启动不了，请假查build path的maven依赖，保证maven设置正常
+5. 启动报错请检查db.properties数据库设置，没有多数据源的设为一致即可
+6. oracle包下不到的手动下载，或者不用oracle则去除依赖
 
 ## 项目截图
 ![输入图片说明](https://gitee.com/uploads/images/2018/0325/145022_599a5d05_1045447.png "1.PNG")
