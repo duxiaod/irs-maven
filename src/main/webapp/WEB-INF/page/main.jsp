@@ -19,7 +19,7 @@
 <link rel="stylesheet" href="${ctx}/css/main.css" media="all" />
 <script type="text/javascript" src="${ctx}/js/echarts.js"></script>
 <script>
-	
+
 <%--JS gloable varilible--%>
 	var ctx = "${ctx}";
 </script>
@@ -31,7 +31,6 @@
 		<p>
 			作者QQ：<a href="tencent://message/?uin=593151321&Site=QQ交谈&Menu=yes"target="blank"><img border="0"src="http://wpa.qq.com/pa?p=1:593151321:7" alt="QQ593151321" width="71" height="24" /></a>
 </br>
-			QQ交流群：<span style="color: red">473676340</span> 需要的加一下共同学习！
 		</p>
 	</blockquote>
 	<fieldset class="layui-elem-field layui-field-title">
