@@ -1,7 +1,6 @@
 基于eclipse+maven+ssm+shiro+layui的后台权限管理系统(maven版)
 
 ## 优先体验
-<a target="_blank" href="http://bd720.cn:8081/irs/">http://bd720.cn:8081/irs/</a>
 
 # irs V1.2
 
